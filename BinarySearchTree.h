@@ -89,8 +89,10 @@ bool isRoot(TreeNode<T> *node)
 template <class T>
 int treeHeight(TreeNode<T> *node)
 {
+    //checking if node exists
     if (node == NULL)
         return -1;
+    // calculating the height of the left and right subtrees, then returning the maximum of the two heights plus one for the current node
     int leftHeight = treeHeight(node->left);
     int rightHeight = treeHeight(node->right);
     return 1 + max(leftHeight, rightHeight);
@@ -99,8 +101,10 @@ int treeHeight(TreeNode<T> *node)
 template <class T>
 int treeSize(TreeNode<T> *node)
 {
+    //checking if node exists
     if (node == NULL)
         return 0;
+    // calculating the size of the left and right subtrees, then returning the sum of the two sizes plus one for the current node
     return 1 + treeSize(node->left) + treeSize(node->right);
 }
 
