@@ -225,5 +225,55 @@ void BinarySearchTree<T>::insert(T &data)
     }
 }
 
+template <class T>
+TreeNode<T> *BinarySearchTree<T>::successor(TreeNode<T> *node) const
+{  
+    if (node == nullptr)
+        return nullptr;
+    // If the node has a right child, the successor is the leftmost node in the right subtree
+    if (node->right != nullptr)
+    {
+        TreeNode<T> *currentNode = node->right;
+        while (currentNode->left != nullptr)
+        {
+            currentNode = currentNode->left;
+        }
+        return currentNode;
+    }
+    // If the node does not have a right child, the successor is one of its ancestors
+    TreeNode<T> *currentNode = node;
+    TreeNode<T> *parentNode = currentNode->parent;
+    while (parentNode != nullptr && currentNode == parentNode->right)
+    {
+        currentNode = parentNode;
+        parentNode = parentNode->parent;
+    }
+    return parentNode; // this will return null if there is no successor (if the node is the largest element in the tree)
+}
+
+template <class T>
+bool BinarySearchTree<T>::remove(T &data)
+{
+//not ready to work on this
+return false;
+}
+
+template <class T>
+bool BinarySearchTree<T>::isEmpty() const
+{
+    return root == nullptr;
+}
+
+template <class T>
+int BinarySearchTree<T>::height() const
+{
+    return treeHeight(root);
+}
+
+template <class T>
+int BinarySearchTree<T>::size() const
+{
+    return treeSize(root);
+}
 
 #endif /* BinarySearchTree_h */
