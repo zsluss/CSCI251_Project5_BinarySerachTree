@@ -287,14 +287,17 @@ bool BinarySearchTree<T>::remove(T &data)
                 if (isRoot(currentNode))
                 { // Node is root
                     root = currentNode->left;
+                    root->parent = nullptr;
                 }
                 else if (parent->left == currentNode)
                 {
                     parent->left = currentNode->left;
+                    currentNode->left->parent = parent;
                 }
                 else
                 {
                     parent->right = currentNode->left;
+                    currentNode->left->parent = parent;
                 }
                 delete currentNode;
                 return true; // Node found and removed
@@ -306,14 +309,17 @@ bool BinarySearchTree<T>::remove(T &data)
                 if (isRoot(currentNode))
                 { // Node is root
                     root = currentNode->right;
+                    root->parent = nullptr;
                 }
                 else if (parent->left == currentNode)
                 {
                     parent->left = currentNode->right;
+                    currentNode->right->parent = parent;
                 }
                 else
                 {
                     parent->right = currentNode->right;
+                    currentNode->right->parent = parent;
                 }
                 delete currentNode;
                 return true; // Node found and removed
