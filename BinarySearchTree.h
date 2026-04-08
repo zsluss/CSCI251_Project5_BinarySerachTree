@@ -173,6 +173,11 @@ TreeNode<T> *BinarySearchTree<T>::search(T &data) const
 template <class T>
 void BinarySearchTree<T>::insert(T &data)
 {
+    //this is in the book but the .cpp doesnt really have a response if this comes back with no data. So maybe I am supose to allow duplicates. 
+    if(search(data) != nullptr)
+    {
+        return; // if the data is already in the tree, we don't insert it again, forgot to add this in my initial run
+    }
     // IF the tree is empty, create a new node and set it as the root, had to set the parent to null, and left and right to null
     if (root == nullptr)
     {
